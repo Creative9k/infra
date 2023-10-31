@@ -3,5 +3,5 @@
   gather_facts: yes
   become: no
 
-  roles:
-    - role: notthebee.ubuntu_autoinstall
+#  roles:
+#    - role: notthebee.ubuntu_autoinstall
