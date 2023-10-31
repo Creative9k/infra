@@ -9,19 +9,19 @@
 #
 hostname: "{{ inventory_hostname }}"
 
-timezone: Europe/Amsterdam
+timezone: Europe/Moscow
 
-dot_nameservers: [185.95.218.42@853#dns.digitale-gesellschaft.ch, 94.140.15.140@853#dns-unfiltered.adguard.com]
+#dot_nameservers: [185.95.218.42@853#dns.digitale-gesellschaft.ch, 94.140.15.140@853#dns-unfiltered.adguard.com]
 
 ntp_timezone: "{{ timezone }}"
 
 locale: en_US.UTF-8
 
-lan_network: "192.168.2.0/24"
+lan_network: "192.168.1.0/24"
 
 vpn_network: "10.1.1.0/24"
 
-lan_gateway: "192.168.2.1"
+lan_gateway: "192.168.1.1"
 
 dmz_network: "192.168.44.0/24"
 
@@ -33,7 +33,7 @@ fish_prompt_color: blue
 
 keyboard_layout: us
 
-username: notthebee
+username: ab
 
 guid: "1000"
 
@@ -41,13 +41,13 @@ shell: /usr/bin/fish
 
 docker_dir: /opt/docker/data
 
-dotfiles_repo: https://github.com/notthebee/dotfiles
+#dotfiles_repo: https://github.com/notthebee/dotfiles
 
 boot_drive_serial: ""
 
-enable_pikvm: true
+#enable_pikvm: true
 
-pikvm_address: pikvm.box
+#pikvm_address: pikvm.box
 
 spindown_time: 600 # in seconds
 
@@ -84,18 +84,18 @@ extra_packages:
 #
 version: focal
 
-apt_mirror: http://ftp.uni-mainz.de/ubuntu/
+apt_mirror: http://mirror.yandex.ru/ubuntu/
 
 
 #
 # Email credentials (for SMART and Snapraid error reporting)
 #
 
-email: moe@notthebe.ee
+email: 75557abv@gmail.com
 
 email_login: "{{ email }}"
 
-email_smtp_host: smtp.mailbox.org
+email_smtp_host: smtp.gmail.com
 
 email_smtp_port: 465
 
@@ -118,7 +118,7 @@ msmtp_alias_default : "{{ email }}"
 #
 # SSH (geerlingguy.security)
 #
-security_ssh_port: 69
+security_ssh_port: 150
 
 security_sudoers_passwordless: [ "{{ username }}" ]
 
@@ -206,11 +206,11 @@ enable_endlessh: false
 #
 # Time Machine
 #
-timemachine_root: /mnt/timemachine
+#timemachine_root: /mnt/timemachine
 
-timemachine_drive: /dev/disk/by-label/TimeMachine
+#timemachine_drive: /dev/disk/by-label/TimeMachine
 
-enable_timemachine: true
+#enable_timemachine: true
 
 #
 # IKEv2
@@ -269,22 +269,22 @@ samba_shares:
     valid_users: "{{ username }}, {{ additional_users[0].name }}"
     write_list: "{{ username }}, {{ additional_users[0].name }}"
 
-  - name: TimeMachine
-    guest_ok: no
-    public: no
-    read_only: no
-    owner: "{{ username }}"
-    vfs_objects:
-      - name: fruit
-        options:
-        - name: time machine
-          value: 'yes'
-      - name: streams_xattr
-    writable: yes
-    browseable: yes
-    path: "{{ timemachine_root }}"
-    valid_users: "{{ username }}"
-    write_list: "{{ username }}"
+#  - name: TimeMachine
+#    guest_ok: no
+#    public: no
+#    read_only: no
+#    owner: "{{ username }}"
+#    vfs_objects:
+#      - name: fruit
+#        options:
+#        - name: time machine
+#         value: 'yes'
+#      - name: streams_xattr
+#    writable: yes
+#    browseable: yes
+#    path: "{{ timemachine_root }}"
+#    valid_users: "{{ username }}"
+#    write_list: "{{ username }}"
 
 #
 # Snapraid and MergerFS
