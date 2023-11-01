@@ -136,9 +136,9 @@ enable_nas_stuff: false
 
 # Home automation
 
-enable_deconz: true
+enable_deconz: false
 
-enable_homeassistant: true
+enable_homeassistant: false
 
 # Media
 
@@ -146,9 +146,9 @@ enable_plex: false
 
 enable_jellyfin: true
 
-enable_photoprism: true
+enable_photoprism: false
 
-enable_booksonic: true
+enable_booksonic: false
 
 # Yo-ho-ho
 
@@ -176,15 +176,15 @@ enable_bunkerized_nginx: false
 
 enable_duckdns: false
 
-enable_cloudflare_ddns: true
+enable_cloudflare_ddns: false
 
-enable_ddclient: true
+enable_ddclient: false
 
 # VPN
 
-enable_wireguard: true
+enable_wireguard: false
 
-enable_ikev2: true
+enable_ikev2: false
 
 # Homepages
 
@@ -289,67 +289,67 @@ samba_shares:
 #
 # Snapraid and MergerFS
 #
-mergerfs_root: /mnt/storage
+#mergerfs_root: /mnt/storage
 
-cache_root: /mnt/storage_cache
+#cache_root: /mnt/storage_cache
 
-enable_mergerfs: yes
+#enable_mergerfs: yes
 
-disks:
-  - { path: /mnt/data1, src: /dev/disk/by-label/Data1, content: true }
-  - { path: /mnt/data2, src: /dev/disk/by-label/Data2, content: true }
-  - { path: /mnt/data3, src: /dev/disk/by-label/Data3, content: true }
+#disks:
+#  - { path: /mnt/data1, src: /dev/disk/by-label/Data1, content: true }
+#  - { path: /mnt/data2, src: /dev/disk/by-label/Data2, content: true }
+#  - { path: /mnt/data3, src: /dev/disk/by-label/Data3, content: true }
 
-cache_disks:
-  - { path: /mnt/cache1, src: /dev/disk/by-label/Cache1, content: true }
-  - { path: /mnt/cache2, src: /dev/disk/by-label/Cache2, content: true }
+#cache_disks:
+#  - { path: /mnt/cache1, src: /dev/disk/by-label/Cache1, content: true }
+#  - { path: /mnt/cache2, src: /dev/disk/by-label/Cache2, content: true }
 
-parity_disks:
+#parity_disks:
   - { path: /mnt/parity1, src: /dev/disk/by-label/Parity1, content: true }
 
-snapraid_data_disks: "{{ disks }}"
+#snapraid_data_disks: "{{ disks }}"
 
-snapraid_parity_disks: "{{ parity_disks }}"
+#snapraid_parity_disks: "{{ parity_disks }}"
 
-snapraid_runner_gmail_pass: "{{ email_password }}"
+#snapraid_runner_gmail_pass: "{{ email_password }}"
 
-snapraid_runner_email_address: "{{ email }}"
+#snapraid_runner_email_address: "{{ email }}"
 
-snapraid_runner_email_address_from: "{{ snapraid_runner_email_address }}"
+#snapraid_runner_email_address_from: "{{ snapraid_runner_email_address }}"
 
-snapraid_runner_email_address_to: "{{ snapraid_runner_email_address }}"
+#snapraid_runner_email_address_to: "{{ snapraid_runner_email_address }}"
 
-snapraid_runner_smtp_host: "{{ email_smtp_host }}"
+#snapraid_runner_smtp_host: "{{ email_smtp_host }}"
 
-snapraid_runner_smtp_port: "{{ email_smtp_port }}"
+#snapraid_runner_smtp_port: "{{ email_smtp_port }}"
 
-snapraid_runner_command: "python3 {{ snapraid_runner_bin }} -c {{ snapraid_runner_conf }}"
+#snapraid_runner_command: "python3 {{ snapraid_runner_bin }} -c {{ snapraid_runner_conf }}"
 
 # Stop all the docker containers, backup the {{ docker_dir }} to the MergerFS pool, execute the snapraid runner and start the containers back up
 # Stopping the containers is necessary – backing up the data folder with the containers running will result in corrputed database files and no files can be changed during the Snapraid sync
-snapraid_runner_cron_jobs:
-  - { job: 'docker stop $(docker ps -q); rsync -avz --delete --exclude cache {{ docker_dir }} {{ mergerfs_root }}/docker_data; docker start $(docker ps -a -q) && {{ snapraid_runner_command }} ', name: 'snapraid_runner', weekday: '0', hour: '3' }
+#snapraid_runner_cron_jobs:
+#  - { job: 'docker stop $(docker ps -q); rsync -avz --delete --exclude cache {{ docker_dir }} {{ mergerfs_root }}/docker_data; docker start $(docker ps -a -q) && {{ snapraid_runner_command }} ', name: 'snapraid_runner', weekday: '0', hour: '3' }
 
-snapraid_runner_delete_threshold: 999999
+#snapraid_runner_delete_threshold: 999999
 
-snapraid_runner_email_sendon: "error"
+#snapraid_runner_email_sendon: "error"
 
-snapraid_runner_use_ssl: true
+#snapraid_runner_use_ssl: true
 
-snapraid_content_files:
-  - /var/snapraid.content
+#snapraid_content_files:
+#  - /var/snapraid.content
 
-snapraid_config_excludes:
-  - "*.unrecoverable"
-  - /lost+found/
-  - "*.!sync"
-  - /tmp/
-  - "/Downloads/*"
+#snapraid_config_excludes:
+#  - "*.unrecoverable"
+#  - /lost+found/
+#  - "*.!sync"
+#  - /tmp/
+#  - "/Downloads/*"
 
 #
 # SMART error reporting
 #
-smartd_default_mail_recipients: [ "{{ email }}" ]
+#smartd_default_mail_recipients: [ "{{ email }}" ]
 
 #
 # Security
